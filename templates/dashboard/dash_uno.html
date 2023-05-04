@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block usuario %}
+
+    <a href="/" class="d-block">Danilo Devia</a>
+
+{% endblock usuario %}
+
+
+{% block titulo %}
+
+    <h1 class="m-0"></h1>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+    <div class="content">
+        <div class="container-fluid">
+                {% include 'dashboard/cards.html' %}
+        </div><!-- /.container-fluid -->
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        {% include 'dashboard/graficos/best_client.html' %}
+                    </div><!-- /.card -->
+
+                    <div class="card">
+                        {% include 'dashboard/tablas/top_person_sales.html' %}
+                    </div><!-- /.card -->
+                </div><!-- /.col-md-6 -->
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        {% include 'dashboard/graficos/sales.html' %}
+                    </div><!-- /.card -->
+
+                    <div class="card">
+                        {% include 'dashboard/tablas/list_client.html' %}
+                    </div>
+                </div><!-- /.col-md-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+{% endblock contenido %}

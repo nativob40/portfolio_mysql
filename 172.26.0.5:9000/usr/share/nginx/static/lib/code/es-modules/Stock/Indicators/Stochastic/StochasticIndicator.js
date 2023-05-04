@@ -1,0 +1,1 @@
+/home/danilo/Python/Django/porfolio_mysql/static/lib/code/es-modules/Stock/Indicators/Stochastic/StochasticIndicator.js

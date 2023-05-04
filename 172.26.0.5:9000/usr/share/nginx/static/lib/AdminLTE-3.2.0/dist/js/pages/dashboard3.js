@@ -1,0 +1,1 @@
+/home/danilo/Python/Django/porfolio_mysql/static/lib/AdminLTE-3.2.0/dist/js/pages/dashboard3.js

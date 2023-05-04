@@ -1,0 +1,45 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  app:
+    image: portfolio_mysql:v2
+    #image: public.ecr.aws/c3j4o0r8/app-portfolio-publico:latest
+    ports:
+      - 8000:8000
+      #- 80:80
+
+  db:
+    image: mysql
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: employees
+      MYSQL_ROOT_PASSWORD: Nuevopass00!
+    volumes:
+      - /var/db/backup
+    ports:
+      - "3306:3306"
+
+    #**************************************************************************
+    #COMANDOS PARA RESTAURAR LA BBDD:
+
+    #>Copiar la bbdd al Container
+      #sudo docker cp test_db porfolio_mysql_db_1:var/db/backup/
+
+    #>Conectarse al container de la bbdd
+      #docker exec -it porfolio_mysql_db_1 'bash'
+
+    #>Dentro del directorio var/db/backup/test_ds correr el siguiente comando:
+      #mysql -u root -p < employees.sql
+
+    #**************************************************************************
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

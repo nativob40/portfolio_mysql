@@ -1,0 +1,39 @@
+<div class="card-header border-0">
+    <h3 class="card-title">TOP 10 Salaries</h3>
+    <div class="card-tools">
+        <a href="#" class="btn btn-sm btn-tool">
+        <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="btn btn-sm btn-tool">
+        <i class="fas fa-bars"></i>
+        </a>
+    </div>
+</div>
+
+    <div class="card-body">
+        <div class="position-relative mb-4">
+        <table id="top_person_sales" class="table-striped display nowrap" style="width:100%">
+            <thead>
+                <tr style="text-align: left">
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Title</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person_sales in list_person_sales %}
+                <tr style="text-align: left">
+                    <td>{{person_sales.first_name}}</td>
+                    <td>{{person_sales.last_name}}</td>
+                    <td>{{person_sales.titles__title}}</td>
+                    <td>${{person_sales.salaries__salary}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    <!-- /.d-flex -->
+    </div>
+</div>

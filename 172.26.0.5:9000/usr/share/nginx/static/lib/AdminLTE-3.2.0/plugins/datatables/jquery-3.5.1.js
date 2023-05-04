@@ -1,0 +1,1 @@
+/home/danilo/Python/Django/porfolio_mysql/static/lib/AdminLTE-3.2.0/plugins/datatables/jquery-3.5.1.js

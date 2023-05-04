@@ -1,0 +1,108 @@
+{% load humanize %}
+<div class="card-header border-0">
+    <div class="d-flex justify-content-between">
+        <h3 class="card-title">Salary by Departments</h3>
+        <a href="javascript:void(0);"></a>
+    </div>
+    </div>
+    <div class="card-body">
+    <div class="d-flex">
+        <p class="d-flex flex-column">
+        <span class="text-bold text-lg">${{sales_over_time|intcomma}}</span>
+        <span></span>
+        </p>
+        <p class="ml-auto d-flex flex-column text-right">
+        <span class="text-success">
+            <!--<i class="fas fa-arrow-up"></i> 8.2%-->
+        </span>
+        <span class="text-muted"></span>
+        </p>
+    </div>
+    <!-- /.d-flex -->
+
+    <div class="position-relative mb-4">
+
+
+        <div id="container2"></div>
+
+        <script type="application/javascript">
+
+            Highcharts.chart('container2', {
+                chart: {
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: '',
+                    align: 'left'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: [{
+                    categories: {{sales_meses|safe}}, //uso |SAFE para evitar eliminar &#x27;
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
+                    labels: {
+                        format: '${value}',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    title: {
+                        text: 'AVG Salary',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    }
+                }, { // Secondary yAxis
+                    title: {
+                        text: 'Salary by Departments',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    labels: {
+                        format: '${value}',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    shared: true
+                },
+                legend: {
+                    align: 'left',
+                    x: 100,
+                    verticalAlign: 'top',
+                    y: 0,
+                    floating: true,
+                    backgroundColor:
+                        Highcharts.defaultOptions.legend.backgroundColor || // theme
+                        'rgba(255,255,255,0.25)'
+                },
+                series: [{
+                    name: 'Salary',
+                    type: 'column',
+                    yAxis: 1,
+                    data: {{sales_montos|safe}},
+                    tooltip: {
+                        valueSuffix: '$'
+                    }
+            
+                }, {
+                    name: 'AVG_Salary',
+                    type: 'spline',
+                    data: {{sales_avg|safe}},
+                    tooltip: {
+                        valueSuffix: '$'
+                    }
+                }]
+            });                        
+
+        </script>
+    </div>
+</div>
+

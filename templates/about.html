@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block usuario %}
+
+    <a href="#" class="d-block">Danilo Devia</a>
+
+{% endblock usuario %}
+
+
+{% block titulo %}
+
+    <h1 class="m-0"></h1>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+  <div class="text-center">
+    
+<div class="card-body">
+  <form>
+    <img class="mb-4" src="{% static 'lib/AdminLTE-3.2.0/plugins/yo.jpeg' %}" alt="" width="100" height="100">
+    <h1 class="h3 mb-0 fw-normal">Danilo Devia</h1>
+    <h1 class="h6 mb-3 fw-normal">Python Developer | Data Analyst</h1>
+    <h1 class="h6 mb-3 fw-normal">danilodevia@yahoo.com.ar</h1>
+
+
+    <a href="/" class="nav-link active">
+
+        <button class="w-30 btn btn-lg btn-primary" type="button">Inicio</button>
+
+    </a>
+
+  </form>
+</div>
+
+
+    
+</div>
+
+{% endblock contenido %}

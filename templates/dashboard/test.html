@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+{% for card in  cards.salary_last_month %}
+
+    <p>{{card}}</p>
+
+{% endfor %}
+<!--    <table class="table-striped display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>emp_no</th>
+                <th>birth_date</th>
+                <th>first_name</th>
+                <th>hire_date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in top_ten %}
+            <tr>
+                <td>{{registro.emp_no}}</td>
+                <td>{{registro.birth_date}}</td>
+                <td>{{registro.first_name}}</td>
+                <td>{{registro.hire_date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+-->
+
+</body>
+</html>

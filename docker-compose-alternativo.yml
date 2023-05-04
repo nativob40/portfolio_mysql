@@ -1,0 +1,60 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: employees
+      MYSQL_ROOT_PASSWORD: Nuevopass00!
+    volumes:
+      - ./mysql:/var/db/backup
+    ports:
+      - "3306:3306"
+
+    #**************************************************************************
+    #COMANDOS PARA RESTAURAR LA BBDD:
+
+    #>Copiar la bbdd al Container
+      #sudo docker cp test_db porfolio_mysql_db_1:var/db/backup/
+
+    #>Conectarse al container de la bbdd
+      #docker exec -it porfolio_mysql_db_1 'bash'
+
+    #>Dentro del directorio var/db/backup/test_ds correr el siguiente comando:
+      #mysql -u root -p < employees.sql
+
+    #**************************************************************************
+
+
+  app:
+    build: .
+    #command: gunicorn myapp.wsgi:application -w 2 -b :8000
+    command: bash -c "python manage.py migrate && gunicorn config.wsgi -b 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./static:/static
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+
+  phpmyadmin:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - db

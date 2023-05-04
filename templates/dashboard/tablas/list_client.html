@@ -1,0 +1,39 @@
+<div class="card-header border-0">
+    <h3 class="card-title">Employees List</h3>
+    <div class="card-tools">
+        <a href="#" class="btn btn-sm btn-tool">
+        <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="btn btn-sm btn-tool">
+        <i class="fas fa-bars"></i>
+        </a>
+    </div>
+</div>
+
+    <div class="card-body">
+        <div class="position-relative mb-4">
+        <table id="list_client" class="table-striped display nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Employee N°</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in list_client %}
+                <tr>
+                    <td>{{client.emp_no}}</td>
+                    <td>{{client.first_name}}</td>
+                    <td>{{client.last_name}}</td>
+                    <td>{{client.titles__title}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    <!-- /.d-flex -->
+    </div>
+</div>
