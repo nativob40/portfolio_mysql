@@ -1,1 +1,0 @@
-/home/danilo/Python/Django/porfolio_mysql/static/lib/code/es-modules/Series/Column3D/Column3DComposition.js
