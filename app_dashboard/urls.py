@@ -6,5 +6,5 @@ app_name = 'app_dashoard'
 
 urlpatterns = [
     path('',Dash_uno.as_view()),
-    path('test',views.Dash_uno.testing),
+    #path('test',views.Dash_uno.testing),
     ]

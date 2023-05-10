@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-+$)qfr@t*@or#4$%28zu96)oqzqn-+zt&imszf*0w@!l+417ge'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*'] #agregar la IP del container de la app.
 
@@ -48,13 +48,14 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'corsheaders',
     'rest_framework',
-
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,7 +65,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'config.urls'
+
 
 TEMPLATES = [
     {
@@ -125,11 +128,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '172.26.0.5:9000/usr/share/nginx/static'
+STATIC_URL = 'http://172.26.0.5:80/static/'#'/static/' #IP del Container de NGINX
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')
-]
+#STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -141,3 +145,4 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 2
 }
+
