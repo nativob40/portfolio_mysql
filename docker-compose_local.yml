@@ -1,8 +1,17 @@
+# Use root/example as user/password credentials
 version: '3.1'
 
 services:
+
+  app:
+    image: portfolio_mysql:v2
+    #image: public.ecr.aws/c3j4o0r8/app-portfolio-publico:latest
+    ports:
+      - 8000:8000
+      #- 80:80
+
   db:
-    image: public.ecr.aws/c3j4o0r8/portfolio_mysql_db:latest #mysql
+    image: mysql
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
     # (this is just an example, not intended to be a production configuration)
     command: --default-authentication-plugin=mysql_native_password
@@ -11,7 +20,7 @@ services:
       MYSQL_DATABASE: employees
       MYSQL_ROOT_PASSWORD: Nuevopass00!
     volumes:
-      - ./mysql:/var/db/backup
+      - /var/db/backup
     ports:
       - "3306:3306"
 
@@ -29,34 +38,8 @@ services:
 
     #**************************************************************************
 
-
-  app:
-    image: public.ecr.aws/c3j4o0r8/portfolio_mysql_app:latest
-    #build: .
-    #command: gunicorn myapp.wsgi:application -w 2 -b :8000
-    command: bash -c "python manage.py migrate && gunicorn -c config/gunicorn/gunicorn_config.py"
-    volumes:
-      - .:/code
-    ports:
-      - "8001:8001"
-      - "80:80"
-    depends_on:
-      - db
-
-  nginx:
-    image: public.ecr.aws/c3j4o0r8/portfolio_mysql_nginx:latest #nginx:latest
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./static:/static
-    ports:
-      - "9000:9000"
-    depends_on:
-      - app
-
   adminer:
-    image: public.ecr.aws/c3j4o0r8/portfolio_mysql_adminer:latest #adminer
+    image: adminer
     restart: always
     ports:
-      - "8080:8080"
-    depends_on:
-      - db
+      - 8080:8080

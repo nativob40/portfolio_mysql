@@ -1,51 +1,45 @@
-{% extends 'index.html' %}
+{% extends 'index.html' %} {% load static %} {% block usuario %}
 
-{% load static %}
+<a href="/" class="d-block">Danilo Devia</a>
 
-{% block usuario %}
+{% endblock usuario %} {% block titulo %}
 
-    <a href="/" class="d-block">Danilo Devia</a>
+<h1 class="m-0"></h1>
 
-{% endblock usuario %}
+{% endblock titulo %} {% block contenido %}
 
+<div class="content">
+  <div class="container-fluid">{% include 'dashboard/cards.html' %}</div>
+  <!-- /.container-fluid -->
 
-{% block titulo %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          {% include 'dashboard/graficos/best_client.html' %}
+        </div>
+        <!-- /.card -->
 
-    <h1 class="m-0"></h1>
+        <div class="card">
+          {% include 'dashboard/tablas/top_person_sales.html' %}
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-md-6 -->
 
-{% endblock titulo %}
+      <div class="col-lg-6">
+        <div class="card">{% include 'dashboard/graficos/sales.html' %}</div>
+        <!-- /.card -->
 
-
-{% block contenido %}
-
-    <div class="content">
-        <div class="container-fluid">
-                {% include 'dashboard/cards.html' %}
-        </div><!-- /.container-fluid -->
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
-                        {% include 'dashboard/graficos/best_client.html' %}
-                    </div><!-- /.card -->
-
-                    <div class="card">
-                        {% include 'dashboard/tablas/top_person_sales.html' %}
-                    </div><!-- /.card -->
-                </div><!-- /.col-md-6 -->
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        {% include 'dashboard/graficos/sales.html' %}
-                    </div><!-- /.card -->
-
-                    <div class="card">
-                        {% include 'dashboard/tablas/list_client.html' %}
-                    </div>
-                </div><!-- /.col-md-6 -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+        <div class="card">
+          {% include 'dashboard/tablas/list_client.html' %}
+        </div>
+      </div>
+      <!-- /.col-md-6 -->
     </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
 
 {% endblock contenido %}

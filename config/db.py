@@ -11,7 +11,7 @@ MIXTA = {
         'NAME': 'employees',
         'USER': 'root',
         'PASSWORD': 'Nuevopass00!',
-        'HOST': '172.26.0.3',
+        'HOST': '172.21.0.2',#'172.26.0.3',
         'PORT': 3306,
     }
 }
