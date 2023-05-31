@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block usuario %}
+
+    <a href="#" class="d-block">Danilo Devia</a>
+
+{% endblock usuario %}
+
+
+{% block titulo %}
+
+    <h1 class="m-0">Ingrese la Traducción</h1>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6"> <!--Primer columna-->
+
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Cual es el significado del verbo?</h3>
+                    </div>
+                                        
+                    <form action="respuesta" method="POST" class="form-horizontal">
+                        {% csrf_token %}
+                        <div class="card-body">
+
+
+                            <div class="form-group row">                            
+                                <label class="form-label">{{etiqueta}}</label>
+                                <input class="form-control" type="text" name="verbo_traducido" placeholder="Verbo en español..." autocomplete="off" required >
+                                <input class="form-control" type="hidden" name="verbo" value={{input_oculto}}>
+                                
+                            </div>
+
+
+                        </div>
+                            
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Aceptar</button>
+                            <a href="/ingles/reset">
+                                <button type="button" class="btn btn-default float-right">Reset</button>
+                            </a>
+
+                        </div>
+                        
+                    </form>
+                            
+                </div>
+            </div>
+
+
+            <div class="col-md-6"> <!--Segunda columna-->
+
+                {% include 'ingles/tabla_resultados.html' %}
+
+            </div>
+
+
+        <div class="row"> <!--Segunda fila-->
+            <div class="col-12">
+
+                {% include 'ingles/tabla_respuestas_incorrectas.html' %}
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{% endblock contenido %}

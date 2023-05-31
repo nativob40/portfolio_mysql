@@ -1,113 +1,105 @@
-{% extends 'index.html' %}
+{% extends 'index.html' %} {% load static %} {% block usuario %}
 
-{% load static %}
+<a href="#" class="d-block">Danilo Devia</a>
 
-{% block usuario %}
+{% endblock usuario %} {% block titulo %}
 
-    <a href="#" class="d-block">Danilo Devia</a>
+<h1 class="m-0">Conjugación de Verbos en Italiano...</h1>
 
-{% endblock usuario %}
-
-
-{% block titulo %}
-
-    <h1 class="m-0">Conjugación de Verbos</h1>
-
-{% endblock titulo %}
-
-
-{% block contenido %}
-
-
-
+{% endblock titulo %} {% block contenido %}
 
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-md-auto">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Que verbo desea conjugar?</h3>
-                </div>                              
-                <form action="verboconjugado" method="POST" class="form-horizontal">
-                    {% csrf_token %}
-                    <div class="card-body"> 
-                        <div class="form-group row">                            
-                            <input class="form-control" type="text" name="verbo" placeholder="Verbo en italiano..." autocomplete="off" required >               
-                        </div>
-                    </div>  
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-info float-right">Conjugar</button>
-                    </div>
-                </form>
-            </div>
+  <div class="row">
+    <div class="col-md-auto">
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Que verbo desea conjugar?</h3>
         </div>
+        <form action="verboconjugado" method="POST" class="form-horizontal">
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="form-group row">
+              <input
+                class="form-control"
+                type="text"
+                name="verbo"
+                placeholder="Verbo en italiano..."
+                autocomplete="off"
+                required
+              />
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-info float-right">
+              Conjugar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Passato Prossimo
+          </h3>
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for i in dato_passato_prossimo %}
+
+            <li>{{i.persona}} {{i.auxiliar}} {{i.conjugacion}}</li>
+
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
-
-        <div class="col-md-auto">
-            <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-text-width"></i>
-                            Passato Prossimo
-                        </h3>
-                    </div>          
-                    <div class="card-body">
-                        <ul>
-                            {% for i in dato_passato_prossimo  %}
- 
-                            <li>{{i.persona}} {{i.auxiliar}} {{i.conjugacion}}</li>
-
-                            {% endfor %}
-                        </ul>
-                    </div> 
-            </div>
+    <div class="col-md-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Presente Semplice
+          </h3>
         </div>
-        
-        <div class="col-md-auto">
-            <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-text-width"></i>
-                            Presente Semplice
-                        </h3>
-                    </div>  
-                    <div class="card-body">
-                        <ul>
-                            {% for i in dato_presente_semplice  %}
- 
-                            <li>{{i.persona}} {{i.conjugacion}}</li>
+        <div class="card-body">
+          <ul>
+            {% for i in dato_presente_semplice %}
 
-                            {% endfor %}
-                        </ul>
-                    </div>     
-            </div>
+            <li>{{i.persona}} {{i.conjugacion}}</li>
+
+            {% endfor %}
+          </ul>
         </div>
-        
-        <div class="col-md-auto">
-            <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-text-width"></i>
-                            Futuro Semplice
-                        </h3>
-                    </div> 
-                    <div class="card-body">
-                        <ul>
-                            {% for i in dato_futuro_semplice  %}
- 
-                            <li>{{i.persona}} {{i.conjugacion}}</li>
-
-                            {% endfor %}
-                        </ul>
-                    </div>
-            </div>
-        </div>
-
+      </div>
     </div>
 
+    <div class="col-md-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Futuro Semplice
+          </h3>
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for i in dato_futuro_semplice %}
+
+            <li>{{i.persona}} {{i.conjugacion}}</li>
+
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock contenido %}

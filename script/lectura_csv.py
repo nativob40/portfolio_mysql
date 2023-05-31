@@ -2,41 +2,54 @@ import pandas as pd
 import random
 import os
 
-df_presente_simple = pd.read_csv('script/csv/presente.csv')
-df_passato_prossimo = pd.read_csv('script/csv/passato_prossimo.csv')
-df_futuro_semplice = pd.read_csv('script/csv/futuro_semplice.csv')
+################# ITALIANO #################
 
-df_traduccion = pd.read_csv('script/csv/traduccion.csv')
-df_traduccion.drop(['Unnamed: 0'], axis = 'columns', inplace=True)
+df_presente_simple = pd.read_csv("script/csv/presente.csv")
+df_passato_prossimo = pd.read_csv("script/csv/passato_prossimo.csv")
+df_futuro_semplice = pd.read_csv("script/csv/futuro_semplice.csv")
+
+df_traduccion = pd.read_csv("script/csv/traduccion.csv")
+df_traduccion.drop(["Unnamed: 0"], axis="columns", inplace=True)
+
+################# INGLES #################
+
+df_present = pd.read_csv("script/csv/ingles/present.csv")
+df_present_continuous = pd.read_csv("script/csv/ingles/present_continuous.csv")
+df_preterite = pd.read_csv("script/csv/ingles/preterite.csv")
+df_future = pd.read_csv("script/csv/ingles/future.csv")
+
+df_traduccion_ingles = pd.read_csv("script/csv/ingles/traduccion.csv")
+df_traduccion_ingles.drop(["Unnamed: 0"], axis="columns", inplace=True)
+
 
 class Verbo:
-
     def verbo_aleatorio(df):
-        resultado=[]
-        verbo=df.columns[random.randrange(1,df.shape[1],1)]
-        persona=random.randrange(0,len(df[verbo])-1,1)
-        dato = df.loc[persona,['Unnamed: 0',f'{verbo}']]
+        resultado = []
+        verbo = df.columns[random.randrange(1, df.shape[1], 1)]
+        persona = random.randrange(0, len(df[verbo]) - 1, 1)
+        dato = df.loc[persona, ["Unnamed: 0", f"{verbo}"]]
         resultado.append(verbo)
         resultado.append(dato[0])
         resultado.append(dato[1])
 
         return resultado
 
-    def traduccion(verbo,palabra_en_español):
-
-        traducir = df_traduccion[f'{verbo}']
+    def traduccion(verbo, palabra_en_español, idioma):
+        if idioma == "ingles":
+            traducir = df_traduccion_ingles[f"{verbo}"]
+        else:
+            traducir = df_traduccion[f"{verbo}"]
 
         if palabra_en_español in list(traducir):
-            resultado = 'Correcto'
-            
+            resultado = "Correcto"
         else:
-            resultado = 'Incorrecto'
+            resultado = "Incorrecto"
 
-        return verbo,list(traducir),resultado
+        return verbo, list(traducir), resultado
 
 
 ##########################################################################################################################
-'''
+"""
 correctas = 0
 incorrectas = 0
 listado_incorrectas = []
@@ -83,4 +96,4 @@ while(cantidad_verbos != 0):
 print(f'\nFELICITACIONES!!!')
 print('EJERCICIO COMPLETADO\n\nRESULTADO:')
 print(f'\n- Correctas = {correctas}\n- Incorrectas = {incorrectas}\n') 
-'''
+"""

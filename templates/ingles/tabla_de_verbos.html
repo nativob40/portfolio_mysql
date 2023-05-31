@@ -1,0 +1,40 @@
+{% extends 'index.html' %} {% load static %} {% block usuario %}
+
+<a href="#" class="d-block">Danilo Devia</a>
+
+{% endblock usuario %} {% block titulo %}
+
+<h1 class="m-0">Lista de Verbos</h1>
+
+{% endblock titulo %} {% block contenido %}
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Los 250 verbos mas usados</h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <table id="tabla_de_verbos" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Verbo</th>
+          <th>Significado_1</th>
+          <th>Significado_2</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for verbo in lista %}
+        <tr>
+          <td>{{verbo.verbo}}</td>
+          <td>{{verbo.traduccion_uno}}</td>
+          <td>{{verbo.traduccion_dos}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->
+
+{% endblock contenido %}

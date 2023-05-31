@@ -1,0 +1,125 @@
+{% extends 'index.html' %} {% load static %} {% block usuario %}
+
+<a href="#" class="d-block">Danilo Devia</a>
+
+{% endblock usuario %} {% block titulo %}
+
+<h1 class="m-0">Conjugación de Verbos en Ingles...</h1>
+
+{% endblock titulo %} {% block contenido %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-auto">
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Que verbo desea conjugar?</h3>
+        </div>
+        <form action="verboconjugado" method="POST" class="form-horizontal">
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="form-group row">
+              <input
+                class="form-control"
+                type="text"
+                name="verbo"
+                placeholder="Verbo en ingles..."
+                autocomplete="off"
+                required
+              />
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-info float-right">
+              Conjugar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Preterite
+          </h3>
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for i in dato_preterite %}
+
+            <li>{{i.persona}} {{i.conjugacion}}</li>
+
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Present
+          </h3>
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for i in dato_present %}
+
+            <li>{{i.persona}} {{i.conjugacion}}</li>
+
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Present Continuous
+          </h3>
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for i in dato_present_continuous %}
+
+            <li>{{i.persona}} {{i.auxiliar}} {{i.conjugacion}}</li>
+
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Future
+          </h3>
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for i in dato_future %}
+
+            <li>{{i.persona}} {{i.auxiliar}} {{i.conjugacion}}</li>
+
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock contenido %}
