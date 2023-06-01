@@ -19,52 +19,6 @@ df_futuro_semplice = pd.read_csv("script/csv/futuro_semplice.csv")
 df_traduccion = pd.read_csv("script/csv/traduccion.csv")
 df_traduccion.drop(["Unnamed: 0"], axis="columns", inplace=True)
 
-################################ ESTO SOLO SE USA PARA CARGAR LOS VERBOS A LA BBDD ############################
-
-"""   
-############################################ TRADUCCION ########################################################
-
-df_lista_de_verbos = pd.read_csv('script/csv/traduccion.csv')
-df_lista_de_verbos.drop(['Unnamed: 0'], axis = 'columns', inplace=True)
-
-for i in range(len(df_lista_de_verbos.columns)):
-    datos = Traduccion_de_verbos(verbo = df_lista_de_verbos.columns[i],
-                                traduccion_uno = df_lista_de_verbos.iloc[0].values[i],
-                                traduccion_dos = df_lista_de_verbos.iloc[1].values[i])
-    datos.save()
-
-############################################ PRESENTE SEMPLICE ########################################################
-
-for verbos in range(1,len(df_presente_simple.columns)):
-    for i in range(len(df_presente_simple)):
-        datos = Conjugacion_presente_semplice(verbo = df_presente_simple.columns[verbos],
-                                              persona = df_presente_simple['Unnamed: 0'][i],
-                                              conjugacion = df_presente_simple[f'{df_presente_simple.columns[verbos]}'][i])
-        datos.save()
-
-############################################ PASSATO PROSSIMO ########################################################
-
-for verbos in range(1,len(df_passato_prossimo.columns)):
-    for i in range(len(df_passato_prossimo)):
-        aux,verbo_conjugado = df_passato_prossimo[f'{df_passato_prossimo.columns[verbos]}'][i].split(' ')
-        datos = Conjugacion_passato_prossimo(verbo = df_passato_prossimo.columns[verbos],
-                                              persona = df_passato_prossimo['Unnamed: 0'][i],
-                                              auxiliar = aux,
-                                              conjugacion = verbo_conjugado)
-        datos.save() 
-
-############################################ FUTURO SEMPLICE ########################################################
-
-for verbos in range(1,len(df_futuro_semplice.columns)):
-    for i in range(len(df_futuro_semplice)):
-        datos = Conjugacion_futuro_semplice(verbo = df_futuro_semplice.columns[verbos],
-                                              persona = df_futuro_semplice['Unnamed: 0'][i],
-                                              conjugacion = df_futuro_semplice[f'{df_futuro_semplice.columns[verbos]}'][i])
-        datos.save()
-"""
-
-###############################################################################################################
-
 
 class Resultados(TemplateView):
     template_name = "italiano/resultados.html"

@@ -1,14 +1,13 @@
 ########################################################################
 #                                                                      #
-#           ESTO SOLO SE USA PARA CARGAR LOS VERBOS A LA BBDD          #
+#   ESTO SOLO SE USA PARA CARGAR LOS VERBOS A LA BBDD - SIN LOADDATA   #
 #                                                                      #
 ########################################################################
 
+# Esto hay que pegarlo dentro del archivo views.py
 
 import pandas as pd
-
-# from script.lectura_csv import Verbo
-from models import (
+from .models import (
     Conjugacion_future,
     Conjugacion_present,
     Conjugacion_present_continuous,
@@ -34,7 +33,7 @@ for i in range(len(df_lista_de_verbos.columns)):
         traduccion_uno=df_lista_de_verbos.iloc[0].values[i],
         traduccion_dos=df_lista_de_verbos.iloc[1].values[i],
     )
-    datos.save()
+    datos.save(using="ingles_db")
 
 ############################################ PRETERITE ########################################################
 
@@ -45,7 +44,7 @@ for verbos in range(1, len(df_preterite.columns)):
             persona=df_preterite["Unnamed: 0"][i],
             conjugacion=df_preterite[f"{df_preterite.columns[verbos]}"][i],
         )
-        datos.save()
+        datos.save(using="ingles_db")
 
 
 ############################################ PRESENT ########################################################
@@ -57,7 +56,7 @@ for verbos in range(1, len(df_present.columns)):
             persona=df_present["Unnamed: 0"][i],
             conjugacion=df_present[f"{df_present.columns[verbos]}"][i],
         )
-        datos.save()
+        datos.save(using="ingles_db")
 
 
 for verbos in range(1, len(df_present_continuous.columns)):
@@ -69,11 +68,9 @@ for verbos in range(1, len(df_present_continuous.columns)):
             verbo=df_present_continuous.columns[verbos],
             persona=df_present_continuous["Unnamed: 0"][i],
             auxiliar=aux,
-            conjugacion=df_present_continuous[
-                f"{df_present_continuous.columns[verbos]}"
-            ][i],
+            conjugacion=verbo_conjugado,
         )
-        datos.save()
+        datos.save(using="ingles_db")
 
 
 ############################################ FUTURE ########################################################
@@ -84,9 +81,10 @@ for verbos in range(1, len(df_future.columns)):
         datos = Conjugacion_future(
             verbo=df_future.columns[verbos],
             persona=df_future["Unnamed: 0"][i],
+            auxiliar=aux,
             conjugacion=verbo_conjugado,
         )
-        datos.save()
+        datos.save(using="ingles_db")
 
 
 ###############################################################################################################
